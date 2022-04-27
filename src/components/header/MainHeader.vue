@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header__row">
         <nav class="nav">
-          <RouterLink :active="active" to="/">Home</RouterLink>
+          <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
           <RouterLink to="/portfolio">Portfolio</RouterLink>
         </nav>
@@ -16,7 +16,10 @@
 <script>
 import { RouterLink, RouterView } from "vue-router";
 
-export default { RouterLink, RouterView };
+export default {
+  RouterLink,
+  RouterView,
+};
 </script>
 
 <style lang="scss">

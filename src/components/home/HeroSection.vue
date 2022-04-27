@@ -1,6 +1,6 @@
 <template>
   <section class="section section-home">
-    <div class="video_overlay">
+    <!-- <div class="video_overlay">
       <video
         class="video"
         autoplay
@@ -8,30 +8,34 @@
         loop
         src="../../assets/video/1.mp4"
       ></video>
-    </div>
+    </div> -->
     <div class="container_lg">
       <div class="home-title">
-        <div class="abstract-lines">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="home-title__text">
-          <h1 class="title-1">Andrew Khimich</h1>
-          <p class="sub-title">
-            <span>#</span> Front end developer <span>#</span> freelancer
-          </p>
-        </div>
+        <transition>
+          <div class="abstract-lines">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </transition>
+        <transition @before-enter="showTitle" appear>
+          <div class="home-title__text">
+            <h1 class="title-1">Andrew Khimich</h1>
+            <p class="sub-title">
+              <span>#</span> Front end developer <span>#</span> freelancer
+            </p>
+          </div>
+        </transition>
       </div>
       <ul class="social__list">
         <li class="social__item">
@@ -62,8 +66,21 @@
 
 <script>
 import SvgIcons from "../icons/SvgIcons.vue";
+import gsap from "gsap";
 
 export default {
+  setup() {
+    const showTitle = (el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 50,
+        duration: 2,
+        ease: "Power2.easeOut",
+      });
+    };
+    return { showTitle };
+  },
+
   components: {
     SvgIcons,
   },

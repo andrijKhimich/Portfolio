@@ -60,13 +60,13 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/mixins.scss";
+@import "@/assets/variables.scss";
 .svg-icon {
   display: inline-block;
   width: 20px;
   height: 20px;
-  fill: #e9e9e9;
-  -webkit-transition: fill 0.3s;
-  -o-transition: fill 0.3s;
-  transition: fill 0.3s;
+  fill: $gray;
+  transition: fill $duration;
 }
 </style>

@@ -1,7 +1,13 @@
 <template>
   <section class="section section-home">
     <div class="video_overlay">
-      <video class="video" autoplay muted loop src="video/1.mp4"></video>
+      <video
+        class="video"
+        autoplay
+        muted
+        loop
+        src="../../assets/video/1.mp4"
+      ></video>
     </div>
     <div class="container_lg">
       <div class="home-title">
@@ -27,26 +33,23 @@
           </p>
         </div>
       </div>
-      <ul class="social-list">
-        <li class="social-item">
-          <a href="#" class="social-link">
-            <svg class="svg-icon">
-              <use xlink:href="img/svg/sprite-svg/sprite.svg#git"></use>
-            </svg>
+      <ul class="social__list">
+        <li class="social__item">
+          <a
+            href="https://github.com/andrijKhimich"
+            target="_blank"
+            class="social__link"
+          >
+            <SvgIcons name="git" class="svg-icon" />
           </a>
         </li>
-        <li class="social-item">
-          <a href="#" class="social-link">
-            <svg class="svg-icon">
-              <use xlink:href="img/svg/sprite-svg/sprite.svg#youtube"></use>
-            </svg>
-          </a>
-        </li>
-        <li class="social-item">
-          <a href="#" class="social-link">
-            <svg class="svg-icon">
-              <use xlink:href="img/svg/sprite-svg/sprite.svg#instagram"></use>
-            </svg>
+        <li class="social__item">
+          <a
+            href="https://www.instagram.com/andrew_khimich/"
+            target="_blank"
+            class="social__link"
+          >
+            <SvgIcons name="instagram" class="svg-icon" />
           </a>
         </li>
       </ul>
@@ -58,7 +61,13 @@
 </template>
 
 <script>
-export default {};
+import SvgIcons from "../icons/SvgIcons.vue";
+
+export default {
+  components: {
+    SvgIcons,
+  },
+};
 </script>
 
 <style lang="scss">
@@ -66,7 +75,11 @@ export default {};
 @import "@/assets/fonts.scss";
 @import "@/assets/variables.scss";
 .section-home {
-  background-image: linear-gradient(90deg, rgba(17, 17, 17, 1) 0%, rgba(74, 74, 74, 1) 100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(17, 17, 17, 1) 0%,
+    rgba(74, 74, 74, 1) 100%
+  );
   background-size: 300%;
   background-position: left;
   animation: bg-animation 15s ease infinite alternate;
@@ -190,7 +203,7 @@ export default {};
 }
 
 .social {
-  &-list {
+  &__list {
     position: absolute;
     bottom: 30px;
     left: 30px;
@@ -205,8 +218,17 @@ export default {};
     }
   }
 
-  &-item {
+  &__item {
     padding: 5px;
+  }
+  &__link {
+    @include rh(1024) {
+      &:hover {
+        .svg-icon {
+          fill: $yellow;
+        }
+      }
+    }
   }
 }
 

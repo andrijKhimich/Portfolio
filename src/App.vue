@@ -1,20 +1,14 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
+<script>
+import MainHeader from "./components/header/MainHeader.vue";
+export default {
+  components: {
+    MainHeader,
+  }
+}
 </script>
 
 <template>
-  <header class="header">
-    <div class="container">
-      <div class="header__row">
-        <nav class="nav">
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-          <RouterLink to="/portfolio">Portfolio</RouterLink>
-        </nav>
-      </div>
-    </div>
-  </header>
-  <RouterView />
+  <MainHeader />
 </template>
 
 <style lang="scss">

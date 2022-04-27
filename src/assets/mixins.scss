@@ -1,0 +1,53 @@
+//mixins
+// hover effects
+@mixin rh ($width) {
+
+  @media only screen and (min-width: $width),
+  (any-hover: hover) {
+    @content;
+  }
+}
+
+//width
+@mixin d($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin m($width) {
+  @media only screen and (min-width: $width) {
+    @content;
+  }
+}
+
+//retina
+@mixin retina {
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min-device-pixel-ratio: 2) {
+    @content;
+  }
+}
+
+//iPhone landscape
+@mixin iphone {
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) {
+    @content;
+  }
+
+}
+
+//iPhoneX landscape
+@mixin iphoneX {
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
+    @content;
+  }
+}
+
+//iPad Pro portrait
+@mixin ipadproport {
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
+    @content;
+  }
+}

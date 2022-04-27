@@ -1,10 +1,9 @@
 <script setup>
-// import TheWelcome from '@/components/TheWelcome.vue'
+import HeroSection from "../components/home/HeroSection.vue"
 </script>
 
 <template>
   <main>
-    <h1>Hello everyone!!!</h1>
-    <!-- <TheWelcome /> -->
+    <HeroSection/>
   </main>
 </template>

@@ -11,23 +11,28 @@
     </div> -->
     <div class="container_lg">
       <div class="home-title">
-        <transition>
-          <div class="abstract-lines">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </transition>
+        <!-- <div class="abstract-lines"> -->
+        <!-- <transition-group 
+          @before-enter="showLines"
+          tag="div"
+          class="abstract-lines"
+          appear
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </transition-group> -->
+        <!-- </div> -->
         <transition @before-enter="showTitle" appear>
           <div class="home-title__text">
             <h1 class="title-1">Andrew Khimich</h1>
@@ -70,6 +75,15 @@ import gsap from "gsap";
 
 export default {
   setup() {
+    const showLines = (el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 50,
+        duration: 2,
+        ease: "Power2.easeOut",
+        stagger: 2,
+      });
+    };
     const showTitle = (el) => {
       gsap.from(el, {
         opacity: 0,
@@ -78,7 +92,7 @@ export default {
         ease: "Power2.easeOut",
       });
     };
-    return { showTitle };
+    return { showTitle, showLines };
   },
 
   components: {

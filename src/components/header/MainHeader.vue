@@ -26,7 +26,7 @@ export default {
 @import "@/assets/mixins.scss";
 @import "@/assets/fonts.scss";
 @import "@/assets/variables.scss";
-@import "@/assets/base.scss";
+// @import "@/assets/base.scss";
 .header {
   position: absolute;
   top: 0;

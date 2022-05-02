@@ -37,10 +37,7 @@
           </p>
         </div>
         <div class="about-img">
-          <picture>
-            <source srcset="../assets/img/andrew.webp" type="image/webp" />
-            <img src="../assets/img/andrew.webp" alt="Andrew" />
-          </picture>
+          <img :src="image" :alt="alt" />
         </div>
       </div>
     </div>
@@ -48,7 +45,16 @@
 </template>
 
 <script>
-export default {};
+import image from "../../assets/img/andrew.jpg";
+export default {
+  data: function () {
+    return {
+      image: image,
+      alt: "Andrew Khimich",
+    };
+  },
+  mounted() {},
+};
 </script>
 
 <style lang="scss">
@@ -136,7 +142,19 @@ export default {};
 
   &-img {
     width: 40%;
-
+    position: relative;
+    overflow: hidden;
+    img {
+      position: relative;
+      object-fit: cover;
+      // max-width: 120%;
+      // width: 120%;
+      // position: absolute;
+      // top: 50%;
+      // left: 50%;
+      // width: 100%;
+      // transform: translate(-50%, -50%);
+    }
     @include d(767) {
       border-radius: 50%;
       overflow: hidden;

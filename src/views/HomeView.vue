@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-  <main>
+  <main class="main">
     <HeroSection />
     <AboutSection />
   </main>

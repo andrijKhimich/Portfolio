@@ -26,12 +26,12 @@
           <span></span>
           <span></span>
         </div>
-          <div class="home-title__text">
-            <h1 class="title-1 js-title">Andrew Khimich</h1>
-            <p class="sub-title js-title">
-              <span>#</span> Front end developer <span>#</span> freelancer
-            </p>
-          </div>
+        <div class="home-title__text">
+          <h1 class="title-1 js-title">Andrew Khimich</h1>
+          <p class="sub-title js-title">
+            <span>#</span> Front end developer <span>#</span> freelancer
+          </p>
+        </div>
       </div>
       <ul class="social__list js-show-item">
         <li class="social__item">
@@ -63,8 +63,13 @@
 <script>
 import SvgIcons from "../icons/SvgIcons.vue";
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
+  components: {
+    SvgIcons,
+  },
   setup() {
     const showLines = (el) => {
       gsap.from(el, {
@@ -85,9 +90,40 @@ export default {
     };
     return { showTitle, showLines };
   },
-
-  components: {
-    SvgIcons,
+  mounted() {
+    gsap.to(".home-title__text", {
+      scrollTrigger: {
+        trigger: ".home-title__text",
+        markers: false,
+        start: "200%, 30%",
+        end: "200%, 30%",
+        scrub: 2,
+      },
+      y: 100,
+      opacity: 0,
+    });
+    gsap.to(".js-show-item", {
+      scrollTrigger: {
+        trigger: ".js-show-item",
+        markers: false,
+        start: "-250%, 30%",
+        end: "250%, 30%",
+        scrub: 2,
+      },
+      y: 160,
+      // opacity: 0,
+    });
+    gsap.to(".js-hero-lines", {
+      scrollTrigger: {
+        trigger: ".js-hero-lines",
+        markers: true,
+        start: "150%, 30%",
+        end: "150%, 30%",
+        scrub: 2,
+      },
+      width: 0,
+      opacity: 0,
+    });
   },
 };
 </script>
@@ -115,7 +151,6 @@ export default {
   transform: translate(-50%, -60%);
   text-align: center;
   &__text {
-    // perspective: 1000px;
     overflow: hidden;
     .title-1 {
       position: relative;
@@ -224,7 +259,7 @@ export default {
   pointer-events: none;
 
   span {
-    width: 200px;
+    width: 100%;
     height: 1px;
     background-color: $gray;
     display: block;

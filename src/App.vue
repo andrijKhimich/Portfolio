@@ -1,8 +1,9 @@
 <script>
 import MainHeader from "./components/header/MainHeader.vue";
 import PagePreloader from "./components/preloader/PagePreloader.vue";
-
 import { gsap } from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   components: {
@@ -16,13 +17,33 @@ export default {
       step: 0,
     };
   },
-  mounted() {
-    console.log("App is loaded");
-    this.preloaderAnimation();
-  },
   created() {
     console.log("App is created");
   },
+  mounted() {
+    this.preloaderAnimation();
+    console.log("App is loaded");
+
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        // this.scroll();
+        // let sections = gsap.utils.toArray(".section");
+        // gsap.to(sections, {
+        //   xPercent: -100 * (sections.length - 1),
+        //   ease: "none",
+        //   scrollTrigger: {
+        //     trigger: ".main",
+        //     pin: true,
+        //     pinSpacing: false,
+        //     scrub: 1,
+        //     snap: 1 / (sections.length - 1),
+        //     end: "+=" + document.querySelector(".main").offsetWidth,
+        //   },
+        // });
+      }
+    };
+  },
+
   methods: {
     preloaderAnimation() {
       window.addEventListener("load", () => {
@@ -68,7 +89,7 @@ export default {
           .to(".js-show-item", { duration: 1, opacity: 1, y: 0 }, `-=1`)
           .to(".js-show-item", { duration: 1, opacity: 1, y: 0 }, `-=1`)
           .to(".js-show-header", { duration: 1, opacity: 1, y: 0 }, `-=1`)
-          .from(".js-title", { duration: .8, rotationX: 90 })
+          .from(".js-title", { duration: 0.8, rotationX: 90 });
       });
     },
   },

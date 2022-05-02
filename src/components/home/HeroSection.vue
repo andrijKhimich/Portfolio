@@ -11,13 +11,7 @@
     </div> -->
     <div class="container_lg">
       <div class="home-title">
-        <!-- <div class="abstract-lines"> -->
-        <!-- <transition-group 
-          @before-enter="showLines"
-          tag="div"
-          class="abstract-lines"
-          appear
-        >
+        <div class="abstract-lines js-hero-lines">
           <span></span>
           <span></span>
           <span></span>
@@ -31,18 +25,15 @@
           <span></span>
           <span></span>
           <span></span>
-        </transition-group> -->
-        <!-- </div> -->
-        <transition @before-enter="showTitle" appear>
+        </div>
           <div class="home-title__text">
-            <h1 class="title-1">Andrew Khimich</h1>
-            <p class="sub-title">
+            <h1 class="title-1 js-title">Andrew Khimich</h1>
+            <p class="sub-title js-title">
               <span>#</span> Front end developer <span>#</span> freelancer
             </p>
           </div>
-        </transition>
       </div>
-      <ul class="social__list">
+      <ul class="social__list js-show-item">
         <li class="social__item">
           <a
             href="https://github.com/andrijKhimich"
@@ -62,7 +53,7 @@
           </a>
         </li>
       </ul>
-      <button class="scroll-btn">
+      <button class="scroll-btn js-show-item">
         <span class="button-text"> scroll </span>
       </button>
     </div>
@@ -123,8 +114,20 @@ export default {
   left: 50%;
   transform: translate(-50%, -60%);
   text-align: center;
-
+  &__text {
+    // perspective: 1000px;
+    overflow: hidden;
+    .title-1 {
+      position: relative;
+      transform: rotate3d(1, 0, 0, 0);
+    }
+  }
   .abstract-lines {
+    span {
+      opacity: 0;
+      position: relative;
+      transform: translate(240px, -170px) rotate(-48deg);
+    }
     @include d(768px) {
       right: 60%;
       bottom: 80%;
@@ -187,7 +190,7 @@ export default {
   text-transform: capitalize;
   font-weight: 300;
   color: $white;
-
+  transform: rotate3d(1, 0, 0, 0);
   @include d(768px) {
     font-size: 16px;
   }
@@ -235,6 +238,8 @@ export default {
 
 .social {
   &__list {
+    transform: translateY(20%);
+    opacity: 0;
     position: absolute;
     bottom: 30px;
     left: 30px;
@@ -266,15 +271,15 @@ export default {
 .scroll-btn {
   position: absolute;
   right: 0;
-  bottom: 100px;
+  bottom: 70px;
   font-size: 14px;
-  transform: rotate(90deg);
   text-transform: uppercase;
   transition: color $duration $timing;
   cursor: pointer;
   width: 100%;
   max-width: 140px;
-
+  transform: translateY(20%);
+  opacity: 0;
   @include d(768px) {
     right: -20px;
     font-size: 10px;
@@ -293,10 +298,11 @@ export default {
   &:after {
     content: "";
     position: absolute;
-    top: 50%;
-    right: 0;
-    width: 30px;
-    height: 1px;
+    top: 110%;
+    right: 50%;
+    width: 1px;
+    height: 30px;
+
     background-color: $gray;
     transition: right $duration $timing;
   }
@@ -304,6 +310,8 @@ export default {
   .button-text {
     letter-spacing: 2px;
     font-weight: 300;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
   }
 }
 </style>

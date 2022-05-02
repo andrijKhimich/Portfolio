@@ -23,28 +23,19 @@ export default {
   name: "PagePreloader",
   props: ["delay", "step"],
 
-  setup() {
+  data() {
     const circle = ref(null);
     return {
       circle,
     };
   },
   created() {
-    // console.log(this.circle);
-    console.log(this.delay);
+    console.log("preloader is created");
   },
   mounted() {
     console.log("preloader is loaded");
-    // this.show();
-    // console.log(this.circle);
-    console.log(this.delay);
   },
-  methods: {
-    show() {
-      this.circle.style.width = 300;
-      // console.log(this.circle);
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -63,13 +54,14 @@ export default {
   left: 0;
   z-index: 20;
 }
-
-svg,
-.progress {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.preloader {
+  svg,
+  .progress {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .progress {
@@ -78,8 +70,9 @@ svg,
 }
 
 .circle {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  opacity: 0;
   // animation: stroke 5s ease-out forwards;
 }
 

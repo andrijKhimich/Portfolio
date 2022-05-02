@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header js-show-header">
     <div class="container">
       <div class="header__row">
         <nav class="nav">
@@ -35,6 +35,8 @@ export default {
   padding: 20px 0;
   text-transform: uppercase;
   z-index: 10;
+  opacity: 0;
+  transform: translateY(-20%);
 }
 .nav {
   text-align: center;

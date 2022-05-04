@@ -1,5 +1,5 @@
 <template>
-  <header class="header js-show-header">
+  <header class="header js-show-down">
     <div class="container">
       <div class="header__row">
         <nav class="nav">

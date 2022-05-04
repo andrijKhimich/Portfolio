@@ -26,14 +26,14 @@
           <span></span>
           <span></span>
         </div>
-        <div class="home-title__text">
+        <div class="home-title__text js-show-down">
           <h1 class="title-1 js-title">Andrew Khimich</h1>
           <p class="sub-title js-title">
             <span>#</span> Front end developer <span>#</span> freelancer
           </p>
         </div>
       </div>
-      <ul class="social__list js-show-item">
+      <ul class="social__list js-show-top">
         <li class="social__item">
           <a
             href="https://github.com/andrijKhimich"
@@ -53,7 +53,7 @@
           </a>
         </li>
       </ul>
-      <button class="scroll-btn js-show-item">
+      <button class="scroll-btn js-show-top">
         <span class="button-text"> scroll </span>
       </button>
     </div>
@@ -76,7 +76,7 @@ export default {
         opacity: 0,
         y: 50,
         duration: 2,
-        ease: "Power2.easeOut",
+        ease: "Power2.easeIn",
         stagger: 2,
       });
     };
@@ -91,20 +91,21 @@ export default {
     return { showTitle, showLines };
   },
   mounted() {
-    gsap.to(".home-title__text", {
+    gsap.to(".js-title", {
       scrollTrigger: {
-        trigger: ".home-title__text",
+        trigger: ".js-title",
         markers: false,
         start: "200%, 30%",
         end: "200%, 30%",
-        scrub: 2,
+        scrub: 3,
+        ease: "none"
       },
-      y: 100,
+      y: 200,
       opacity: 0,
     });
-    gsap.to(".js-show-item", {
+    gsap.to(".js-show-top", {
       scrollTrigger: {
-        trigger: ".js-show-item",
+        trigger: ".js-show-top",
         markers: false,
         start: "-250%, 30%",
         end: "250%, 30%",
@@ -116,10 +117,11 @@ export default {
     gsap.to(".js-hero-lines", {
       scrollTrigger: {
         trigger: ".js-hero-lines",
-        markers: true,
+        markers: false,
         start: "150%, 30%",
         end: "150%, 30%",
-        scrub: 2,
+        stagger: 0.1,
+        scrub: 3,
       },
       width: 0,
       opacity: 0,
@@ -152,16 +154,15 @@ export default {
   text-align: center;
   &__text {
     overflow: hidden;
-    .title-1 {
-      position: relative;
-      transform: rotate3d(1, 0, 0, 0);
-    }
   }
   .abstract-lines {
     span {
       opacity: 0;
       position: relative;
-      transform: translate(240px, -170px) rotate(-48deg);
+      width: 0;
+      left: 100%;
+      transform: translate(0, 0) rotate(132deg);
+      transform-origin: left;
     }
     @include d(768px) {
       right: 60%;
@@ -245,12 +246,12 @@ export default {
 }
 
 .abstract-lines {
-  width: 200px;
+  width: 140px;
   height: 300px;
   background-color: transparent;
   position: absolute;
   bottom: 50%;
-  right: 80%;
+  right: 90%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -259,21 +260,19 @@ export default {
   pointer-events: none;
 
   span {
-    width: 100%;
+    width: 200%;
     height: 1px;
     background-color: $gray;
     display: block;
-    transform: rotate(-48deg);
 
     &:nth-last-child(-n + 3) {
-      opacity: 0;
+      opacity: 0 !important;
     }
   }
 }
 
 .social {
   &__list {
-    transform: translateY(20%);
     opacity: 0;
     position: absolute;
     bottom: 30px;
@@ -313,7 +312,7 @@ export default {
   cursor: pointer;
   width: 100%;
   max-width: 140px;
-  transform: translateY(20%);
+  // transform: translateY(20%);
   opacity: 0;
   @include d(768px) {
     right: -20px;
@@ -348,5 +347,15 @@ export default {
     writing-mode: vertical-rl;
     text-orientation: mixed;
   }
+}
+
+.js-show-down {
+  opacity: 0;
+  transform: translateY(-20%);
+}
+
+.js-show-top {
+  opacity: 0;
+  transform: translateY(20%);
 }
 </style>

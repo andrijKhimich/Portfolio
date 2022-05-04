@@ -1,6 +1,6 @@
 <template>
   <section class="section section-about">
-    <div class="word">
+    <div class="word js-about-word">
       <p>About</p>
     </div>
     <div class="abstract-lines">
@@ -20,7 +20,7 @@
     </div>
     <div class="container_lg">
       <div class="about-row">
-        <div class="about-content">
+        <div class="about-content js-show-about">
           <div class="section-title">
             <h2 class="title-2">About</h2>
           </div>
@@ -36,7 +36,7 @@
             offers and like to create something new in my daily work.
           </p>
         </div>
-        <div class="about-img">
+        <div class="about-img js-show-about-img">
           <img :src="image" :alt="alt" />
         </div>
       </div>
@@ -46,6 +46,10 @@
 
 <script>
 import image from "../../assets/img/andrew.jpg";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 export default {
   data: function () {
     return {
@@ -53,7 +57,46 @@ export default {
       alt: "Andrew Khimich",
     };
   },
-  mounted() {},
+  mounted() {
+    gsap.to(".js-show-about", {
+      scrollTrigger: {
+        trigger: ".js-show-about",
+        markers: false,
+        start: "-100%, 50%",
+        end: "-100%, 50%",
+        scrub: 2,
+        ease: "power2.in",
+      },
+      x: 0,
+      opacity: 1,
+    });
+    gsap.to(".js-show-about-img", {
+      scrollTrigger: {
+        trigger: ".js-show-about-img",
+        markers: false,
+        start: "0, 50%",
+        end: "0, 50%",
+        scrub: 1,
+        ease: "power2.in",
+      },
+      x: 0,
+      rotateX: 0,
+      rotateY: 0,
+      rotateZ: 0,
+      opacity: 1,
+    });
+    gsap.to(".js-about-word", {
+      scrollTrigger: {
+        trigger: ".js-about-word",
+        markers: false,
+        start: "-200%, 50%",
+        end: "200%, 50%",
+        scrub: 5,
+        ease: "none",
+      },
+      x: -100 + "%",
+    });
+  },
 };
 </script>
 
@@ -133,7 +176,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-
+    perspective: 500px;
     @include d(768) {
       flex-direction: column-reverse;
       justify-content: center;
@@ -144,16 +187,10 @@ export default {
     width: 40%;
     position: relative;
     overflow: hidden;
+
     img {
       position: relative;
       object-fit: cover;
-      // max-width: 120%;
-      // width: 120%;
-      // position: absolute;
-      // top: 50%;
-      // left: 50%;
-      // width: 100%;
-      // transform: translate(-50%, -50%);
     }
     @include d(767) {
       border-radius: 50%;
@@ -170,7 +207,7 @@ export default {
   &-content {
     width: 60%;
     padding-right: 60px;
-
+    opacity: 0;
     @include d(768) {
       width: 90%;
       margin: 0 auto;
@@ -181,5 +218,18 @@ export default {
       width: 100%;
     }
   }
+}
+
+.js-show-about {
+  transform: translate(-50px, 0);
+}
+
+.js-show-about-img {
+  transform-style: preserve-3d;
+  transform: rotate3d(1, -1, 1, -20deg);
+  opacity: 0;
+}
+.js-about-word {
+  transform: translate(100%, 0);
 }
 </style>

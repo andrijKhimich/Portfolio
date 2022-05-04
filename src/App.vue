@@ -78,18 +78,13 @@ export default {
           .to(
             ".js-hero-lines span",
             {
-              duration: 0.2,
-              y: 0,
-              x: 0,
+              duration: 1,
+              width: 200 + "%",
               stagger: 0.1,
               opacity: 1,
             },
-            "-=1"
           )
-          .to(".js-show-item", { duration: 1, opacity: 1, y: 0 }, `-=1`)
-          .to(".js-show-item", { duration: 1, opacity: 1, y: 0 }, `-=1`)
-          .to(".js-show-header", { duration: 1, opacity: 1, y: 0 }, `-=1`)
-          .from(".js-title", { duration: 0.8, rotationX: 90 });
+          .to(".js-show-down, .js-show-top", { duration: 1, opacity: 1, y: 0 }, `-=1`)
       });
     },
   },

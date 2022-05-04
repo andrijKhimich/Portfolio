@@ -1,0 +1,47 @@
+{
+  "slider": [{
+      "id": 1,
+      "url": "src/assets/img/1.jpg",
+      "href": "#",
+      "btn": "See more"
+    },
+    {
+      "id": 2,
+      "url": "src/assets/img/2.jpg",
+      "href": "#",
+      "btn": "See more"
+
+    },
+    {
+      "id": 3,
+      "url": "src/assets/img/3.jpg",
+      "href": "#",
+      "btn": "See more"
+
+    },
+    {
+      "id": 4,
+      "url": "src/assets/img/4.jpg",
+      "href": "#",
+      "btn": "See more"
+    },
+    {
+      "id": 5,
+      "url": "src/assets/img/5.jpg",
+      "href": "#",
+      "btn": "See more"
+    },
+    {
+      "id": 6,
+      "url": "src/assets/img/6.jpg",
+      "href": "#",
+      "btn": "See more"
+    },
+    {
+      "id": 7,
+      "url": "src/assets/img/7.jpg",
+      "href": "#",
+      "btn": "See more"
+    }
+  ]
+}

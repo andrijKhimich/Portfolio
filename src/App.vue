@@ -18,11 +18,11 @@ export default {
     };
   },
   created() {
-    console.log("App is created");
+    // console.log("App is created");
   },
   mounted() {
     this.preloaderAnimation();
-    console.log("App is loaded");
+    // console.log("App is loaded");
 
     document.onreadystatechange = () => {
       if (document.readyState == "complete") {

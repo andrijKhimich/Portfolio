@@ -71,24 +71,24 @@ export default {
     SvgIcons,
   },
   setup() {
-    const showLines = (el) => {
-      gsap.from(el, {
-        opacity: 0,
-        y: 50,
-        duration: 2,
-        ease: "Power2.easeIn",
-        stagger: 2,
-      });
-    };
-    const showTitle = (el) => {
-      gsap.from(el, {
-        opacity: 0,
-        y: 50,
-        duration: 2,
-        ease: "Power2.easeOut",
-      });
-    };
-    return { showTitle, showLines };
+    // const showLines = (el) => {
+    //   gsap.from(el, {
+    //     opacity: 0,
+    //     y: 50,
+    //     duration: 2,
+    //     ease: "Power2.easeIn",
+    //     stagger: 2,
+    //   });
+    // };
+    // const showTitle = (el) => {
+    //   gsap.from(el, {
+    //     opacity: 0,
+    //     y: 50,
+    //     duration: 2,
+    //     ease: "Power2.easeOut",
+    //   });
+    // };
+    // return { showTitle, showLines };
   },
   mounted() {
     gsap.to(".js-title", {
@@ -98,7 +98,7 @@ export default {
         start: "200%, 30%",
         end: "200%, 30%",
         scrub: 3,
-        ease: "none"
+        ease: "none",
       },
       y: 200,
       opacity: 0,
@@ -112,7 +112,6 @@ export default {
         scrub: 2,
       },
       y: 160,
-      // opacity: 0,
     });
     gsap.to(".js-hero-lines", {
       scrollTrigger: {
@@ -165,14 +164,13 @@ export default {
       transform-origin: left;
     }
     @include d(768px) {
-      right: 60%;
-      bottom: 80%;
+      right: 100%;
+      bottom: 50%;
     }
 
     @include d(575px) {
-      width: 160px;
       height: 240px;
-      bottom: 90%;
+      bottom: 40%;
     }
 
     @include d(480px) {
@@ -232,12 +230,7 @@ export default {
   }
 
   @include d(575px) {
-    max-width: 70%;
     margin: 0 auto;
-  }
-
-  @include d(340) {
-    max-width: 80%;
   }
 
   span {
@@ -258,7 +251,10 @@ export default {
   justify-content: space-between;
   z-index: 0;
   pointer-events: none;
-
+  @include d(1024px) {
+    width: 90px;
+    height: 200px;
+  }
   span {
     width: 200%;
     height: 1px;
@@ -324,7 +320,7 @@ export default {
       color: $yellow;
 
       &::after {
-        right: -10px;
+        top: 140%;
       }
     }
   }
@@ -336,9 +332,8 @@ export default {
     right: 50%;
     width: 1px;
     height: 30px;
-
     background-color: $gray;
-    transition: right $duration $timing;
+    transition: top $duration $timing;
   }
 
   .button-text {

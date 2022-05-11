@@ -3,7 +3,7 @@
     <div class="word js-portfolio-word">
       <p>Portfolio</p>
     </div>
-    <div class="abstract-lines">
+    <!-- <div class="abstract-lines">
       <span></span>
       <span></span>
       <span></span>
@@ -17,7 +17,7 @@
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </div> -->
     <div class="section-title portfolio__title">
       <h2 class="title-2">Portfolio</h2>
     </div>
@@ -33,8 +33,6 @@
           :speed="750"
           :free-mode="true"
           :loop="true"
-          @swiper="onSwiper"
-          @slideChange="onSlideChange"
           :breakpoints="{
             0: {
               slidesPerView: 1,
@@ -44,7 +42,7 @@
             },
           }"
         >
-          <swiper-slide v-for="slide in slider" :key="slide.id">
+          <swiper-slide v-for="slide in slides" :key="slide.id">
             <div class="portfolio-card">
               <div class="portfolio-card_rotate">
                 <div
@@ -55,9 +53,9 @@
               </div>
               <div class="portfolio-card__content">
                 <a
-                  href="{slide.href}"
+                  :href="slide.href"
                   class="button button_sm"
-                  target="_blank"
+                  target="_blank" 
                   >{{ slide.btn }}</a
                 >
               </div>
@@ -73,50 +71,74 @@
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Mousewheel, Parallax } from "swiper";
+// import gsap library
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/mousewheel";
-import "swiper/css/parallax";
+
+// get ref from vue
+import { ref } from "vue";
+
+// init firebase
+import { db } from "../../firebase/config";
+import { collection, getDocs } from "firebase/firestore";
 
 export default {
+  name: "PortfolioSection",
   components: {
     Swiper,
     SwiperSlide,
   },
-  data() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
-    };
-    const onSlideChange = () => {
-      console.log("slide change");
-    };
+
+  setup() {
+    const slides = ref([]);
+    const collectionsRef = collection(db, "portfolio");
+
+    getDocs(collectionsRef).then((snapshot) => {
+      let docs = [];
+      snapshot.docs.forEach((doc) => {
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      slides.value = docs;
+      console.log(slides);
+    });
+    // const onSwiper = (swiper) => {
+    //   console.log(swiper);
+    // };
+    // const onSlideChange = () => {
+    //   console.log("slide change");
+    // };
     return {
-      onSwiper,
-      onSlideChange,
+      slides,
+      // onSwiper,
+      // onSlideChange,
       modules: [Mousewheel, Parallax],
-      slider: [],
+      // slider: [],
     };
   },
   mounted() {
-    fetch("http://localhost:3000/slider")
-      .then((res) => res.json())
-      .then((data) => (this.slider = data))
-      .catch((err) => console.log(err.message));
-
     gsap.to(".js-portfolio-word", {
       scrollTrigger: {
         trigger: ".js-portfolio-word",
-        markers: true,
+        markers: false,
         start: "-200%, 50%",
         end: "200%, 50%",
         scrub: 10,
         ease: "none",
       },
       x: 100 + "%",
+    });
+    gsap.to(".portfolio-row", {
+      scrollTrigger: {
+        trigger: ".portfolio-row",
+        markers: false,
+        start: "-600, 60%",
+        end: "-300, 60%",
+        ease: "none",
+        scrub: 1,
+      },
+      opacity: 1,
+      top: 0,
     });
   },
 };
@@ -126,17 +148,21 @@ export default {
 @import "@/assets/mixins.scss";
 @import "@/assets/fonts.scss";
 @import "@/assets/variables.scss";
-
+// Import Swiper styles
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/mousewheel";
+@import "swiper/css/parallax";
 .section-portfolio {
   background-color: $white;
   color: $black;
   padding: 180px 0;
 
-  @include d(991) {
+  @include d(992px) {
     padding: 100px 0;
   }
 
-  @include d(768) {
+  @include d(768px) {
     padding: 100px 0;
   }
 
@@ -145,15 +171,15 @@ export default {
     bottom: 0;
   }
 
-  .abstract-lines {
-    top: 0;
-    left: auto;
-    right: 0;
-  }
+  // .abstract-lines {
+  //   top: 0;
+  //   left: auto;
+  //   right: 0;
+  // }
 }
 
 .portfolio {
-  @include d(1199) {
+  @include d(1199px) {
     height: 440px;
   }
 
@@ -168,11 +194,11 @@ export default {
     right: 0;
     top: 180px;
 
-    @include d(1199) {
-      right: -30px;
+    @include d(1440px) {
+      right: -60px;
     }
 
-    @include d(991) {
+    @include d(992px) {
       position: relative;
       transform: rotate(0);
       top: 0;
@@ -190,11 +216,11 @@ export default {
       left: 95%;
       background-color: $black;
 
-      @include d(1299) {
+      @include d(1299px) {
         bottom: 0;
       }
 
-      @include d(575) {
+      @include d(575px) {
         width: 60px;
         left: 90%;
       }
@@ -206,28 +232,32 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
-    @include d(1599) {
+    opacity: 0;
+    position: relative;
+    // transform: translate(0, 20%);
+    top: 60px;
+
+    @include d(1440px) {
       max-width: 1100px;
     }
 
-    @include d(1399) {
+    @include d(1399px) {
       max-width: 1000px;
     }
 
-    @include d(1299) {
+    @include d(1299px) {
       max-width: 900px;
     }
 
-    @include d(1199) {
+    @include d(1199px) {
       max-width: 860px;
     }
 
-    @include d(1099) {
+    @include d(1099px) {
       max-width: 760px;
     }
 
-    @include d(991) {
+    @include d(992px) {
       max-width: 100%;
     }
   }
@@ -239,7 +269,13 @@ export default {
     filter: grayscale(1);
     transition: filter 1.4s ease;
     border: 1px solid $gray;
-    @include d(768) {
+    @include d(1440px) {
+      height: 500px;
+    }
+    @include d(1024px) {
+      height: 400px;
+    }
+    @include d(768px) {
       position: relative;
       width: 100%;
       height: 240px;

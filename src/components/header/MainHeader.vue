@@ -40,6 +40,9 @@ export default {
 }
 .nav {
   text-align: center;
+  @include d(1440px) {
+    font-size: 14px;
+  }
   a {
     color: $gray;
     transition: color $duration;

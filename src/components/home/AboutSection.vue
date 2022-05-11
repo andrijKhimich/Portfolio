@@ -3,7 +3,7 @@
     <div class="word js-about-word">
       <p>About</p>
     </div>
-    <div class="abstract-lines">
+    <div class="abstract-lines js-about-lines">
       <span></span>
       <span></span>
       <span></span>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import image from "../../assets/img/andrew.jpg";
+import image from "../../../public/img/andrew.jpg";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
@@ -96,6 +96,17 @@ export default {
       },
       x: -100 + "%",
     });
+    gsap.to(".js-about-lines span", {
+      scrollTrigger: {
+        trigger: ".js-about-lines",
+        markers: false,
+        start: "-150%, 30%",
+        end: "-150%, 30%",
+        scrub: 3,
+      },
+      width: 100 + "%",
+      opacity: 1,
+    });
   },
 };
 </script>
@@ -107,8 +118,16 @@ export default {
 .section-about {
   background: $gray;
   padding: 180px 0;
+  .abstract-lines span {
+    opacity: 0;
+    position: relative;
+    width: 0;
+    left: 100%;
+    transform: translate(0, 0) rotate(132deg);
+    transform-origin: left;
+  }
 
-  @include d(768) {
+  @include d(768px) {
     padding: 100px 0;
   }
 
@@ -116,7 +135,7 @@ export default {
     top: 0;
     left: 0;
 
-    @include d(768) {
+    @include d(768px) {
       right: 0;
       left: auto;
       top: 20px;
@@ -141,11 +160,11 @@ export default {
       left: 95%;
       background-color: $black;
 
-      @include d(1299) {
+      @include d(1299px) {
         bottom: 0;
       }
 
-      @include d(575) {
+      @include d(575px) {
         width: 60px;
         left: 90%;
       }
@@ -160,11 +179,11 @@ export default {
   }
 
   .word {
-    @include d(991) {
+    @include d(992px) {
       right: -100px;
     }
 
-    @include d(768) {
+    @include d(768px) {
       right: -300px;
     }
   }
@@ -177,7 +196,7 @@ export default {
     align-items: center;
     height: 100%;
     perspective: 500px;
-    @include d(768) {
+    @include d(768px) {
       flex-direction: column-reverse;
       justify-content: center;
     }
@@ -192,7 +211,7 @@ export default {
       position: relative;
       object-fit: cover;
     }
-    @include d(767) {
+    @include d(768px) {
       border-radius: 50%;
       overflow: hidden;
       margin-bottom: 40px;
@@ -208,13 +227,13 @@ export default {
     width: 60%;
     padding-right: 60px;
     opacity: 0;
-    @include d(768) {
+    @include d(768px) {
       width: 90%;
       margin: 0 auto;
       padding-right: 0;
     }
 
-    @include d(575) {
+    @include d(575px) {
       width: 100%;
     }
   }

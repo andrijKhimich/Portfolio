@@ -32,7 +32,7 @@
           </ul>
         </div>
         <div class="contact-form">
-          <form class="form" @submit.prevent="handleSubmit" action="form.php">
+          <form class="form" @submit.prevent="handleSubmit">
             <div class="section-title">
               <h3 class="title-3">Contact form</h3>
             </div>
@@ -183,9 +183,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/mixins.scss";
-@import "@/assets/fonts.scss";
-@import "@/assets/variables.scss";
+@import "../../assets/variables";
+@import "../../assets/mixins";
+@import "../../assets/fonts";
 
 .section-contact {
   background-image: linear-gradient(
@@ -306,7 +306,7 @@ export default {
 .form {
   position: relative;
   padding: 40px 60px 60px;
-  box-shadow: 0px 12px 43px -6px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 12px 43px -6px rgba(0, 0, 0, 0.75);
   max-width: 90%;
 
   @include d(1024px) {
@@ -333,11 +333,11 @@ export default {
     display: block;
     text-align: center;
     margin: 40px auto 0;
-    box-shadow: 0px 12px 43px -6px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 12px 43px -6px rgba(0, 0, 0, 0.75);
 
     @include rh(1024px) {
       &:hover {
-        box-shadow: 0px 12px 23px -6px rgba(0, 0, 0, 0.75);
+        box-shadow: 0 12px 23px -6px rgba(0, 0, 0, 0.75);
 
         .svg-icon {
           margin-left: 10px;

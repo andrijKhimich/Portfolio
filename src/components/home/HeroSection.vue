@@ -130,9 +130,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/mixins.scss";
-@import "@/assets/fonts.scss";
-@import "@/assets/variables.scss";
+@import "../../assets/variables";
+@import "../../assets/mixins";
+@import "../../assets/fonts";
 .section-home {
   background-image: linear-gradient(
     90deg,

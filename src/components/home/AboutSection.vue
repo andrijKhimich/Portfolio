@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import image from "../../../public/img/andrew.jpg";
+import image from "/img/andrew.jpg";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
@@ -58,7 +58,7 @@ export default {
     };
   },
   mounted() {
-    gsap.to(".js-show-about", {
+    gsap.to(".js-show-about",{
       scrollTrigger: {
         trigger: ".js-show-about",
         markers: false,
@@ -112,9 +112,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/mixins.scss";
-@import "@/assets/fonts.scss";
-@import "@/assets/variables.scss";
+@import "../../assets/variables";
+@import "../../assets/mixins";
+@import "../../assets/fonts";
 .section-about {
   background: $gray;
   padding: 180px 0;

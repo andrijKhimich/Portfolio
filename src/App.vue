@@ -1,3 +1,4 @@
+<!--suppress JSDeprecatedSymbols -->
 <script>
 import MainHeader from "./components/header/MainHeader.vue";
 import PagePreloader from "./components/preloader/PagePreloader.vue";
@@ -21,11 +22,12 @@ export default {
     // console.log("App is created");
   },
   mounted() {
+    
     this.preloaderAnimation();
     // console.log("App is loaded");
 
     document.onreadystatechange = () => {
-      if (document.readyState == "complete") {
+      if (document.readyState === "complete") {
         // this.scroll();
         // let sections = gsap.utils.toArray(".section");
         // gsap.to(sections, {
@@ -97,8 +99,8 @@ export default {
 </template>
 
 <style lang="scss">
-@import "@/assets/mixins.scss";
-@import "@/assets/fonts.scss";
-@import "@/assets/variables.scss";
-@import "@/assets/base.scss";
+@import "./assets/mixins.scss";
+@import "./assets/fonts.scss";
+@import "./assets/variables.scss";
+@import "./assets/base.scss";
 </style>

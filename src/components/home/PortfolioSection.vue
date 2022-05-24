@@ -3,21 +3,6 @@
     <div class="word js-portfolio-word">
       <p>Portfolio</p>
     </div>
-    <!-- <div class="abstract-lines">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div> -->
     <div class="section-title portfolio__title">
       <h2 class="title-2">Portfolio</h2>
     </div>
@@ -55,7 +40,7 @@
                 <a
                   :href="slide.href"
                   class="button button_sm"
-                  target="_blank" 
+                  target="_blank"
                   >{{ slide.btn }}</a
                 >
               </div>
@@ -69,8 +54,10 @@
 
 <script>
 // Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from "swiper/vue";
+// import { Swiper, SwiperSlide } from "swiper/vue";
+import {Swiper, SwiperSlide} from "swiper/vue"
 import { Mousewheel, Parallax } from "swiper";
+
 // import gsap library
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -100,20 +87,11 @@ export default {
         docs.push({ ...doc.data(), id: doc.id });
       });
       slides.value = docs;
-      console.log(slides);
     });
-    // const onSwiper = (swiper) => {
-    //   console.log(swiper);
-    // };
-    // const onSlideChange = () => {
-    //   console.log("slide change");
-    // };
+
     return {
       slides,
-      // onSwiper,
-      // onSlideChange,
       modules: [Mousewheel, Parallax],
-      // slider: [],
     };
   },
   mounted() {
@@ -145,14 +123,14 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/mixins.scss";
-@import "@/assets/fonts.scss";
-@import "@/assets/variables.scss";
+@import "../../assets/variables";
+@import "../../assets/mixins";
+@import "../../assets/fonts";
 // Import Swiper styles
-@import "swiper/css";
-@import "swiper/css/navigation";
-@import "swiper/css/mousewheel";
-@import "swiper/css/parallax";
+//@import "swiper/css";
+//@import "swiper/css/navigation";
+//@import "swiper/css/mousewheel";
+//@import "swiper/css/parallax";
 .section-portfolio {
   background-color: $white;
   color: $black;
